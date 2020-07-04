@@ -1,0 +1,27 @@
+{% extends "basic_app/basic_app_base.html" %}
+{% block body_block %}
+{% load static%}
+  <div class="jumbotron">
+    <h1>Welcome to the School Detail Page</h1>
+    <h2>School Details:</h2>
+    <p>Id_num: {{school_details.id}}</p>
+    <p>Name: {{school_details.name}}</p>
+    <p>Principal: {{school_details.principal}}</p>
+    <p>Location: {{school_details.location}}</p>
+    <!-- {% for i in school_details.pics.all%} -->
+    <img src="{static "pics/prateek.jpg"}" alt="image">
+    <!-- img src="{{ obj1.photo.url }}" -->
+    <!-- {%endfor%} -->
+    <h3>Students:</h3>
+
+      {% for student in school_details.students.all %}
+        <p>{{student.name}} who is {{student.age}} years old.</p>
+      {% endfor %}
+
+  </div>
+  <div class="container" >
+      <p ><a class='btn btn-large btn-warning'  href="{% url 'basic_app:update' pk=school_details.pk %}">Update School Details</a></p>
+      <p ><a class='btn btn-large btn-danger'  href="{% url 'basic_app:delete' pk=school_details.pk %}">Delete School Details</a></p>
+    </div>
+
+{% endblock %}
